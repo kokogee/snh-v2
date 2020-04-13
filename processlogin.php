@@ -34,14 +34,16 @@ if($errorCount > 0){
 
             if($currentUser == $email . ".json"){  //if the user is found..
                
-                $userstring  = file_get_contents("db/users/". $currentUser);
-                $userObject = json_decode($userstring);
+                $userString  = file_get_contents("db/users/".$currentUser);
+                $userObject = json_decode($userString);
                 $passwordFromDB = $userObject->password;
 
-                $passwordFromUser = password_hash($password, 'DEFAULT_PASSWORD');
-                if($passwordFromDB = $passwordFromUser){
-                    //redirect to dashboard
-                    echo "Now inside Dashboard";
+                $passwordFromUser = password_verify($password, $passwordFromDB);
+
+                if($passwordFromDB == $passwordFromUser){
+                    //redirect to proper dashboard
+                    $_SESSION['loggedIn'] = $userObject->id;
+                    header("Location: dashboard.php");
                     die();
                 }
 
@@ -51,6 +53,6 @@ if($errorCount > 0){
     $_SESSION["error"] = "Invalid Email or Password"; 
     header("Location: login.php");
     die();
-}
+}       
 
 ?>

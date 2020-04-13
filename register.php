@@ -1,8 +1,12 @@
-<?php session_start();  //starting the session
-
-include_once("lib/header.php");
+<?php include_once('lib/header.php');
+if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
+     //redirect to dashboard, if already logged in.
+     header("Location: dashboard.php");
+}
+  //include_once("lib/header.php");
 
 ?> 
+<h3>Register</h3>
      <p><strong> WELCOME GUEST! Register Here.</p></strong>
      <p><b> All fields are required .</b></p>
 

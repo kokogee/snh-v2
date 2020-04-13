@@ -66,7 +66,7 @@ if($errorCount > 0){
             $currentUser = $allUsers[$counter]; //current user we are testing if it already exists
     
                 if($currentUser == $email . ".json"){
-                    $_SESSION["error"] = "Registration Failed, User already esist "; 
+                    $_SESSION["error"] = "Registration Failed, User already exist "; 
                     header("Location: register.php");
                     die();
                 }

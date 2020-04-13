@@ -1,6 +1,4 @@
-<?php session_start();
- 
-Include_once('lib/header.php'); ?>
+<?php include_once('lib/header.php'); ?>
 
 <p>
         <?php 
@@ -15,4 +13,4 @@ Include_once('lib/header.php'); ?>
     <p><strong> WELCOME TO EVICO_HOLDINGS</strong> <br /></p>
     <p><b>The Quieter you are, the More you are able to Hear.</b></p>
 
-    <?php Include_once('lib/footer.php'); ?>
+<?php include_once('lib/footer.php'); ?>
