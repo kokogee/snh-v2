@@ -1,32 +1,22 @@
 <?php include_once('lib/header.php');
+      require_once('functions/alert.php');
 
 if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
      //redirect to dashboard, if already logged in.
-     header("Location: dashboard.php");
+     redirect_to("dashboard.php");
 }
      // include_once('lib/header.php')
-  ?>  
-
-<h3>Login to continue</h3>
+?>  
+<div class="container">
+     <div class="row col-6">
+     <h3>Login to continue</h3>
+     </div>
+     <div class="row col-6">
 <p>
-        <?php 
-          if(isset($_SESSION['message']) && !empty($_SESSION['message'])){
-               echo "<span style='color:Blue'>" . $_SESSION['message'] . "</span>";
-                session_destroy();
-          }
-        ?>
- </P>
-  
- <FORM method="post" action="processlogin.php" >
-<p> 
-          <?php 
-          if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
-               echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";
-                    session_unset();
-                    session_destroy();
-                }
-           ?>
+          <?php print_alert(); ?> 
 </P>
+ <FORM method="post" action="processlogin.php" >
+
      <p>
           <LABEL>Email:</LABEL></p>
           <INPUT 
@@ -35,16 +25,20 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                     echo "value=" . $_SESSION['email']; 
                }
           ?>
-          type="text" name="email"placeholder="email"/>
+          type="text" class="form-control" name="email"placeholder="email"/>
      </p>
      <p>
-          <LABEL>Password: </LABEL></P>
-          <INPUT type="password" name="password" placeholder="password" />
+          <LABEL>Password:</LABEL></P>
+          <INPUT class="form-control" type="password" name="password" placeholder="password" />
      </P>
       <p>
-            <button type="submit">Login</button>      
+            <button class="btn btn-sm btn-primary" type="submit">Login</button>      
       </p> 
-
- </FORM>
-
+      <p>
+          <a href="forgot.php">Forgot Password</a><br />
+          <a href="register.php">Don't have an account? Register</a>
+     </p>
+     </FORM>
+     </div>
+</div>
 <?php include_once('lib/footer.php'); ?>

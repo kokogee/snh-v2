@@ -1,5 +1,5 @@
 <?php session_start();
-
+ require_once('functions/user.php');
 //collecting the data
 $errorCount = 0; //checking for error messages.
 
@@ -31,20 +31,9 @@ if($errorCount > 0){
     $Session_error .=   " in your Form Submission";
     $_SESSION["error"] = $Session_error ;
    
-   
-    if($errorCount > 1) {
-        $Session_error .= "s";
-    }
-
-    $Session_error .=   " in your Form Submission";
-    $_SESSION["error"] = $Session_error ;
-    header("Location: register.php");
+    redirect_to("register.php");
 
 }else{
-
-    //count all users
-    $allUsers = scandir("db/users/"); //return @array (2 filled)   
-    $countAllUsers = count($allUsers);
 
     //Assign the next newUserId to the new user
     $newUserId = ($countAllUsers-1);
@@ -54,26 +43,24 @@ if($errorCount > 0){
         'firstname'=>$firstname,
         'lastname'=>$lastname,
         'email'=>$email,
-        'password'=> password_hash($password, PASSWORD_DEFAULT), //password hashing
+        'password'=> password_hash($password, PASSWORD_DEFAULT), //password hashing-encryption
         'Gender'=>$Gender,
         'Designation'=>$Designation
     ];
 
     //check if the user already exist in a db or file
-        //** Look into the allUser array and check if the email already exist using their email..we'll do this using loop
-        for ($counter = 0; $counter < $countAllUsers ; $counter++) {
-
-            $currentUser = $allUsers[$counter]; //current user we are testing if it already exists
+        //** Look into the allUser array and check if the email already exist using their email...we'll use loop.
+        $userExists = find_user($email);
     
-                if($currentUser == $email . ".json"){
+                if($userExists){
                     $_SESSION["error"] = "Registration Failed, User already exist "; 
                     header("Location: register.php");
                     die();
                 }
-            }
     
   //Here, we save them in a database and return them to the login page; if the user does not exist. Have a folder for Admin and different users.  
-  file_put_contents("db/users/". $email . ".json", json_encode($userObject));
+ save_user($userObject);
+ 
   $_SESSION["message"] = "Registration Completed. You can now Login  " . $firstname; 
   header("Location: login.php");
   

@@ -1,35 +1,38 @@
-<?php include_once('lib/header.php');
+<?php include_once('lib/header.php');  
+require_once('functions/alert.php');
+
 if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
      //redirect to dashboard, if already logged in.
      header("Location: dashboard.php");
 }
   //include_once("lib/header.php");
-
 ?> 
-<h3>Register</h3>
-     <p><strong> WELCOME GUEST! Register Here.</p></strong>
-     <p><b> All fields are required .</b></p>
+<div class="container">
+     <div class="row col-6">
+          <h3>Register</h3>
+     </div>
+     <div class="row col-6">
+          <p><strong>WELCOME, Register Here.</p></strong>
+     </div>
+     <div class="row col-6">
+          <p>All fields are required**</p>
+     </div>
+     <div class="row col-6">
 
      <FORM method="post" action="processregister.php" >
-<p> 
-          <?php 
-          if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
-               echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";
-                    session_unset();
-                    session_destroy();
-          }
-           ?>
-       </P>
+     <p> 
+          <?php print_alert(); ?>
+     </P> 
      <P>
-          <LABEL>First Name:</LABEL></P>
+          <LABEL class="label" for="firstname">First Name:</LABEL></P>
           <INPUT 
           <?php 
                if(isset($_SESSION['firstname'])){
                     echo "value=" . $_SESSION['firstname']; 
                }
           ?>
-          type="text" name="firstname" placeholder="firstname" />
-     </p>        
+          type="text" id="firstname" class="form-control" name="firstname" placeholder="firstname" />
+     </p>         
      <p>
           <LABEL>Last Name:</LABEL></p>
           <INPUT 
@@ -38,7 +41,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                     echo "value=" . $_SESSION['lastname']; 
                }
           ?>
-          type="text" name="lastname"placeholder="lastname" />
+          type="text" class="form-control" name="lastname"placeholder="lastname" />
      </p>
      <p>
           <LABEL>Email:</LABEL></p>
@@ -48,14 +51,14 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                     echo "value=" . $_SESSION['email']; 
                }
           ?>
-          type="text" name="email"placeholder="email"/>
+          type="text" class="form-control" name="email"placeholder="email"/>
      </p>
      <p>
           <LABEL>Password: </LABEL></P>
-          <INPUT type="password" name="password" placeholder="password" />
+          <INPUT type="password" class="form-control" name="password" placeholder="password" />
      </P>
      <p>  <label>Gender:</label><br>
-          <select name="Gender" >
+          <select class="form-control" name="Gender" >
           <?php 
                if(isset($_SESSION['Gender'])){
                     echo "value=" . $_SESSION['Gender']; 
@@ -80,42 +83,43 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
      </P>  
 
           <label>Designation:</label><br>
-          <select name="Designation" >
+          <select class="form-control" name="Designation" >
 
           <option value="">Select One</option>
           <Option
           <?php 
-                    if(isset($_SESSION['Designation']) && $_SESSION['Designation'] == 'Admin'){
+                    if(isset($_SESSION['Designation']) && $_SESSION['Designation'] == 'Medical Team (MT)'){
                          echo "selected"; 
                      }
           ?> 
-          >Admin</option>
+          >Medical Team (MT)</option>
           <option
           <?php 
-                    if(isset($_SESSION['Designation']) && $_SESSION['Designation'] == 'Tech_Team'){
+                    if(isset($_SESSION['Designation']) && $_SESSION['Designation'] == 'Patient'){
                          echo "selected"; 
                      }
           ?> 
-          >Tech_Team</Option>  
-          <option
-          <?php 
-                    if(isset($_SESSION['Designation']) && $_SESSION['Designation'] == 'Intern'){
-                         echo "selected"; 
-                     }
-          ?> 
-          >Intern</Option> 
-          <option
-          <?php 
-                    if(isset($_SESSION['Designation']) && $_SESSION['Designation'] == 'Client'){
-                         echo "selected"; 
-                     }
-          ?> 
-          >Client</Option> 
+          >Patient</Option>  
           </select>
-     
-     </p>     
-     <p> <INPUT type="submit" value="Register"><br> <BUTTON type="Reset"></p>
- 
-</P>
- </FORM>
+     </p>  
+     <P>
+          <LABEL class="label" for="department">Department:</LABEL></P>
+          <INPUT 
+          <?php 
+               if(isset($_SESSION['department'])){
+                    echo "value=" . $_SESSION['department']; 
+               }
+          ?>
+          type="text" id="department" class="form-control" name="department" placeholder="department" />
+     </p>      
+     <p>   
+     <button class="btn btn-sm btn-success" type="submit">Register</button>
+     </P>
+     <p>
+          <a href="forgot.php">Forgot Password</a><br />
+          <a href="login.php">Already have an account? Login</a>
+     </p>
+     </FORM>
+</div>
+</div>
 <?php include_once("lib/footer.php"); ?>

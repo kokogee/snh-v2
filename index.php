@@ -1,16 +1,19 @@
-<?php include_once('lib/header.php'); ?>
+<?php include_once('lib/header.php');  require_once('functions/alert.php'); ?>
 
 <p>
-        <?php 
-          if(isset($_SESSION['message']) && !empty($_SESSION['message'])){
-               echo "<span style='color:Green'>" . $_SESSION['message'] . "</span>";
-                session_destroy();
-          }
-        ?>
- </P>
+        <?php print_alert(); ?>  
+</P>
 
-<b>
-    <p><strong> WELCOME TO EVICO_HOLDINGS</strong> <br /></p>
-    <p><b>The Quieter you are, the More you are able to Hear.</b></p>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">WELCOME TO SNG: Hospital for the Ignorant</h1>
+  <p class="lead">This is a specialist hospital to cure ignorance!</p>
+  <p class="lead">come as you are, it is completely free!</p>
+  <p>
+      <a class="btn btn-bg btn-outline-secondary" href="login.php">Login</button>
+      <a class="btn btn-bg btn-outline-primary" href="register.php">Register</button>
+  </p>
+</div>
+
+&copy; 2020-<?php echo date("Y");?>
 
 <?php include_once('lib/footer.php'); ?>

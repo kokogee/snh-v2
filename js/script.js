@@ -1,1 +1,2 @@
-// javascript code
+//javascript codes
+document.onload = console.log('loaded!');
