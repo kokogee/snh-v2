@@ -44,8 +44,8 @@ Super Admin should be able to add other users. (in-view)
 - A patient is able to book an appointment with a Medical Team;
 After patient sign in, the patient will see 2 options on their dashboard:
  *Book Appointment
- *Pay Bill leads to a blank page for now
-        Book Appointment allows the patient fill a form to book appointment with the medical team.
+ *Pay Bill leads to a blank page for now while the 
+        **Book Appointment allows the patient fill a form to book appointment with the medical team.
         Below are the form fields required. I will still add more.
             Date of appointment
             Time of appointment
