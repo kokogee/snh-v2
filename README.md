@@ -6,6 +6,10 @@ This is an authentication system that has the following;
     - Login
     - Logout
     - Dashboard
+    - forgot password
+
+
+
 
 *With pending validations on names and emails
     Correct Name (in-view)
@@ -18,16 +22,24 @@ This is an authentication system that has the following;
         Email must not be less than 5
         Email must have @ and . in it
 
+
+
 On Login, the users are redireected to different pages based on their Access Level, 
 there are pending validations on User login time and date (in-View)
+
+
 
 On Dashboard, 
 User Access Level, Department, date of registration, and date of last login should be shown
 Super Admin should be able to add other users. (in-view)
 
+
+
 - User can reset their password
-- The codevisrefactored to use functions for better codebase
+- The code is refactored to use functions for better codebase
 - There's CSS styling to the code using bootstrap
+
+
 
 - A patient is able to book an appointment with a Medical Team;
 After patient sign in, the patient will see 2 options on their dashboard:
@@ -40,6 +52,9 @@ After patient sign in, the patient will see 2 options on their dashboard:
             Nature of appointment
             Initial complaint
             Department they want to book the appointment for
+   
+   
+   
    
    Then the medical Team member can be able to: (in-View)
         View all appointments in their own department (if no appointment, they should see : "you have no pending appointments")
